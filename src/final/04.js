@@ -1,18 +1,10 @@
 // useState: tic tac toe
-// 💯 preserve state in localStorage
-// http://localhost:3000/isolated/final/04.extra-1.js
+// http://localhost:3000/isolated/final/04.js
 
 import * as React from 'react'
 
 function Board() {
-  const [squares, setSquares] = React.useState(
-    () =>
-      JSON.parse(window.localStorage.getItem('squares')) || Array(9).fill(null),
-  )
-
-  React.useEffect(() => {
-    window.localStorage.setItem('squares', JSON.stringify(squares))
-  }, [squares])
+  const [squares, setSquares] = React.useState(Array(9).fill(null))
 
   const nextValue = calculateNextValue(squares)
   const winner = calculateWinner(squares)
@@ -83,9 +75,7 @@ function calculateStatus(winner, squares, nextValue) {
 }
 
 function calculateNextValue(squares) {
-  const xSquaresCount = squares.filter(r => r === 'X').length
-  const oSquaresCount = squares.filter(r => r === 'O').length
-  return oSquaresCount === xSquaresCount ? 'X' : 'O'
+  return squares.filter(Boolean).length % 2 === 0 ? 'X' : 'O'
 }
 
 function calculateWinner(squares) {

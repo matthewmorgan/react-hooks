@@ -34,7 +34,7 @@ function PokemonInfo({pokemonName}) {
   }, [pokemonName])
 
   if (status === 'idle') {
-    return <span>Submit a pokemon</span>
+    return 'Submit a pokemon'
   } else if (status === 'pending') {
     return <PokemonInfoFallback name={pokemonName} />
   } else if (status === 'rejected') {
@@ -54,7 +54,7 @@ function PokemonInfo({pokemonName}) {
 function App() {
   const [pokemonName, setPokemonName] = React.useState('')
 
-  function handleSubmit(newPokemonName: string) {
+  function handleSubmit(newPokemonName) {
     setPokemonName(newPokemonName)
   }
 

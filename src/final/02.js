@@ -1,14 +1,21 @@
-// useState: greeting
-// 💯 accept an initialName
-// http://localhost:3000/isolated/final/01.extra-1.js
+// useEffect: persistent state
+// http://localhost:3000/isolated/final/02.js
 
 import * as React from 'react'
 
 function Greeting({initialName = ''}) {
-  const [name, setName] = React.useState(initialName)
-  function handleChange(event: React.SyntheticEvent<HTMLInputElement>) {
-    setName(event.currentTarget.value)
+  const [name, setName] = React.useState(
+    window.localStorage.getItem('name') ?? initialName,
+  )
+
+  React.useEffect(() => {
+    window.localStorage.setItem('name', name)
+  })
+
+  function handleChange(event) {
+    setName(event.target.value)
   }
+
   return (
     <div>
       <form>
@@ -21,7 +28,7 @@ function Greeting({initialName = ''}) {
 }
 
 function App() {
-  return <Greeting initialName="Kody" />
+  return <Greeting />
 }
 
 export default App
