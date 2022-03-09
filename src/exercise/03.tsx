@@ -33,7 +33,7 @@ function FavoriteAnimal({animal, onAnimalChange}: Props) {
   )
 }
 
-function Display({animal}) {
+function Display({animal}: {animal: string}) {
     return <div>{`Your favorite animal is: ${animal}!`}</div>
 }
 
